@@ -1,0 +1,48 @@
+Respostas para as perguntas do Laboratório 1:
+
+
+[ATIVIDADE 1]
+
+-> Há mudanças na ordem de execução das threads? 
+   Por que isso ocorre?
+
+   [RESPOSTA]
+
+   Sim, a cada execução podemos encontrar ordens distintas de escrita. Isso ocorre porque as threads são independentes, não havendo definição explícita de ordem entre elas. Então, o(s) processador(es) pode(m) realizar qualquer ordem de execução. 
+
+
+
+
+
+[ATIVIDADE 2]
+
+-> Qual foi a diferença em relação ao programa anterior?
+   
+   [RESPOSTA]  
+   
+   A diferença é que agora conseguimos distinguir qual thread está sendo executada a cada instante, já que foi passado o identificador local por parâmetro (que é escrito na tela junto com a mensagem). 
+
+
+
+
+
+[ATIVIDADE 3]
+
+-> O programa funcionou como esperado?
+   
+   [RESPOSTA]
+
+   Sim, eu esperava que o programa escrevesse as threads em ordem aleatória (como nos anteriores) e que os 2 argumentos passados para cada thread fossem escritos.
+
+
+
+
+
+[ATIVIDADE 4]
+
+-> O que aconteceu de diferente em relação às versões/execuções anteriores?
+   
+   [RESPOSTA]
+
+   Dessa vez o programa esperou que as threads criadas acabassem para terminar a thread principal. Isso foi possível graças à função pthread_join().
+
