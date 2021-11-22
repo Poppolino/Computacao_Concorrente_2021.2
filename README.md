@@ -1,2 +1,2 @@
 # Computacao_Concorrente_2021.2
-Laboratórios realizados para a disciplina de Computação Concorrente do DCC - UFRJ
+Repositório voltado para as atividades práticas da disciplina Computação Concorrente (2021.2), ministrada pela professora Silvana Rossetto.
