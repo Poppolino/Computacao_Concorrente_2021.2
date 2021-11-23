@@ -36,6 +36,22 @@ void *quad_vetor(void *intervalo){
 
 
 
+/* Função que verifica se os valores finais do vetor estão corretos */
+int passa_teste(){
+    int valor_esperado;
+
+    for(int pos=0; pos < TAM; pos++){
+        valor_esperado = pos * pos;    
+        
+        if(vetor[pos] != valor_esperado)
+            return 0;
+    }
+
+    return 1;
+}
+
+
+
 int main(){
     int erro;
     pthread_t tid[2]; 
@@ -80,10 +96,17 @@ int main(){
 
 
     /* Escreve o vetor resultante na tela */
-    printf("O vetor resultante terá: \n\n");
+    /*printf("O vetor resultante terá: \n\n");
     for(int pos=0; pos < TAM; pos++)
         printf("Elemento %d: (%d)^2 = %d\n", pos, pos, vetor[pos]);
+    */
+    
 
+    /* Verifica se o cálculo foi feito adequadamente */
+    if(passa_teste())
+        printf("\nOs valores finais do vetor estão corretos! :)\n");
+    else
+        printf("\nOs valores finais do vetor não estão corretos.. :(\n");
 
     return 0;
 }
