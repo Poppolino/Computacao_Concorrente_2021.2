@@ -1,5 +1,3 @@
-import java.util.concurrent.atomic.AtomicInteger;
-
 
 // Monitor que implementa a logica do padrao leitores/escritores
 class MonitorLeitEsc{
@@ -64,16 +62,48 @@ class MonitorLeitEsc{
 
 
 
+// Classe usada para passar um inteiro por referência em Java
+class InteiroMutavel{
+    private int num;
+
+
+    /* Construtor */
+    InteiroMutavel(int num){
+        this.num = num;
+    }    
+
+
+    /* Pega o valor do inteiro */
+    public int get(){
+        return this.num;
+    }
+
+
+    /* A variável é alterada para o valor passado */
+    public void set(int valor){
+        this.num = valor;
+    }
+
+
+    /* Adiciona o valor passado à variável inteira */
+    public void add(int valor){
+        this.num += valor;   
+    }
+}
+
+
+
+
 
 class Leitor extends Thread{
     private int id;
-    private AtomicInteger base; 
+    private InteiroMutavel base; 
     private MonitorLeitEsc monitor;
     private static final int TEMPO = 2000;
 
     
     /* Construtor da Classe */
-    Leitor(int id, AtomicInteger base, MonitorLeitEsc monitor){
+    Leitor(int id, InteiroMutavel base, MonitorLeitEsc monitor){
         this.id = id;
         this.base = base;
         this.monitor = monitor;
@@ -112,13 +142,13 @@ class Leitor extends Thread{
 
 class Escritor extends Thread{
     private int id;
-    private AtomicInteger base;
+    private InteiroMutavel base;
     private MonitorLeitEsc monitor;
     private static final int TEMPO = 2000;
 
 
     /* Construtor da Classe */
-    Escritor(int id, AtomicInteger base, MonitorLeitEsc monitor){
+    Escritor(int id, InteiroMutavel base, MonitorLeitEsc monitor){
         this.id = id;
         this.base = base;
         this.monitor = monitor;
@@ -149,13 +179,13 @@ class Escritor extends Thread{
 
 class LeitorEscritor extends Thread{
     private int id;
-    private AtomicInteger base;
+    private InteiroMutavel base;
     private MonitorLeitEsc monitor;
     private static final int TEMPO = 2000;
 
 
     /* Construtor da Classe */
-    LeitorEscritor(int id, AtomicInteger base, MonitorLeitEsc monitor){
+    LeitorEscritor(int id, InteiroMutavel base, MonitorLeitEsc monitor){
         this.id = id;
         this.base = base;
         this.monitor = monitor;
@@ -182,7 +212,7 @@ class LeitorEscritor extends Thread{
 
             /* Incrementa o valor da base em 1 */
             monitor.EntraEscritor(id);
-            base.incrementAndGet();
+            base.add(1);
             monitor.SaiEscritor(id);        
     
 
@@ -217,7 +247,7 @@ class ProblemaLeitorEscritor{
         MonitorLeitEsc monitor = new MonitorLeitEsc();
         
         /* Define a Base de dados compartilhada entre as threads */
-        AtomicInteger base = new AtomicInteger(0);
+        InteiroMutavel base = new InteiroMutavel(0);
 
 
         /* Cria e inicia as threads Leitoras */
